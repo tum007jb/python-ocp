@@ -11,7 +11,7 @@ def run_linux_command_and_get_columns(command):
             result = []
             for line in lines:
                 columns = line.split()
-                if len(columns) >= 3:
+                if len(columns) >= 5:
                     col1 = columns[0]
                     col2 = columns[1]
                     col3 = columns[2]
@@ -52,7 +52,7 @@ if __name__ == "__main__":
         message_summary = "<h1>Summary Performance OCP</h1>"
         message_summary += "<table border=\"0\">"
         for col1, col2, col3, col4, col5 in result:
-                message_summary += f"<tr><td> {col1} </td><td style=\"color:green;\">{col3}</td><td style=\"color:green;\">{col4}</td><td style=\"color:green;\">{col5}</td></tr>"
+                message_summary += f"<tr><td> {col1} <td>{col2} </td><td>{col3}</td><td>{col4}</td><td>{col5}</td></tr>"
         message_summary += "</table>"
         send_message_to_teams_webhook(teams_webhook_url, message_summary)
         #print(message_summary)
