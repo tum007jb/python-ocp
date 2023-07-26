@@ -51,6 +51,8 @@ if __name__ == "__main__":
     if result is not None:
         message_summary = "<h1>Check pod</h1>"
         message_summary += "<table border=\"0\">"
+        for col1, col2, col3, col4, col5 in result[0]:
+                message_summary += f"<tr><td> {col1} <td>{col2} </td><td>{col3}</td><td>{col4}</td><td>{col5}</td></tr>"
         for col1, col2, col3, col4, col5 in result[1:]:
                 message_summary += f"<tr><td> {col1} <td>{col2} </td><td>{col3}</td><td>{col4}</td><td>{col5}</td></tr>"
         message_summary += "</table>"
