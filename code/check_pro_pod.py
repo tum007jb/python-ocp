@@ -60,3 +60,4 @@ if __name__ == "__main__":
     #    print("ผลลัพธ์:")
     #    for col1, col3 in result:
     #        print(f"คอลัมน์ที่ 1: {col1}, คอลัมน์ที่ 3: {col3}")
+

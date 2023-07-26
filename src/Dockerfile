@@ -1,21 +1,14 @@
-#Deriving the latest base image
-FROM python:latest
+# ใช้ base image ของ Python
+FROM python:3.9
 
+# ติดตั้ง openshift และ kubernetes libraries ผ่าน pip
+RUN pip install openshift kubernetes
 
-#Labels as key value pair
-LABEL Maintainer="surayos@mfec.co.th"
+# ทำการคัดลอกโค้ด Python ของคุณไปยังตำแหน่งที่ต้องการใน container
+COPY openshift.py /app/openshift.py
 
+# ตั้ง working directory ให้เป็น /app
+WORKDIR /app
 
-# Any working directory can be chosen as per choice like '/' or '/home' etc
-# i have chosen /usr/app/src
-WORKDIR /usr/app/src
-
-#to COPY the remote file at working directory in container
-COPY ../code/run_command.py ./
-# Now the structure looks like this '/usr/app/src/test.py'
-
-
-#CMD instruction should be used to run the software
-#contained by your image, along with any arguments.
-
-CMD [ "python", "./run_command.py"]
+# รันคำสั่ง Python ของคุณ
+CMD ["python", "openshift.py"]

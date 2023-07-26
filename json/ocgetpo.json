@@ -1,0 +1,245 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "k8s.v1.cni.cncf.io/network-status": "[{\n    \"name\": \"openshift-sdn\",\n    \"interface\": \"eth0\",\n    \"ips\": [\n        \"10.129.2.21\"\n    ],\n    \"default\": true,\n    \"dns\": {}\n}]",
+                    "k8s.v1.cni.cncf.io/networks-status": "[{\n    \"name\": \"openshift-sdn\",\n    \"interface\": \"eth0\",\n    \"ips\": [\n        \"10.129.2.21\"\n    ],\n    \"default\": true,\n    \"dns\": {}\n}]",
+                    "openshift.io/generated-by": "OpenShiftNewApp",
+                    "openshift.io/scc": "anyuid"
+                },
+                "creationTimestamp": "2023-07-20T15:32:49Z",
+                "generateName": "gitlab-598b86bf4f-",
+                "labels": {
+                    "deployment": "gitlab",
+                    "pod-template-hash": "598b86bf4f"
+                },
+                "name": "gitlab-598b86bf4f-8n7rb",
+                "namespace": "demo",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "gitlab-598b86bf4f",
+                        "uid": "3b3dc2f5-2cea-436a-abeb-e5055edb697e"
+                    }
+                ],
+                "resourceVersion": "3492686",
+                "uid": "fad25d72-0e93-48dc-8e15-0d6c61488684"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "image": "quay.io/redhattraining/gitlab-ce@sha256:edd9a8f20a3761b29a1b059dd5f1e9100639500b68fcbb75d25d3c159482c5e5",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "gitlab",
+                        "ports": [
+                            {
+                                "containerPort": 22,
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 443,
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "resources": {},
+                        "securityContext": {
+                            "capabilities": {
+                                "drop": [
+                                    "MKNOD"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/gitlab",
+                                "name": "gitlab-volume-1"
+                            },
+                            {
+                                "mountPath": "/var/log/gitlab",
+                                "name": "gitlab-volume-2"
+                            },
+                            {
+                                "mountPath": "/var/opt/gitlab",
+                                "name": "gitlab-volume-3"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-fhlnr",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "imagePullSecrets": [
+                    {
+                        "name": "gitlab-sa-dockercfg-r522w"
+                    }
+                ],
+                "nodeName": "worker0.ocpdso.dso.local",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "seLinuxOptions": {
+                        "level": "s0:c26,c25"
+                    }
+                },
+                "serviceAccount": "gitlab-sa",
+                "serviceAccountName": "gitlab-sa",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "emptyDir": {},
+                        "name": "gitlab-volume-1"
+                    },
+                    {
+                        "emptyDir": {},
+                        "name": "gitlab-volume-2"
+                    },
+                    {
+                        "emptyDir": {},
+                        "name": "gitlab-volume-3"
+                    },
+                    {
+                        "name": "kube-api-access-fhlnr",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "service-ca.crt",
+                                                "path": "service-ca.crt"
+                                            }
+                                        ],
+                                        "name": "openshift-service-ca.crt"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2023-07-20T15:32:49Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2023-07-20T15:32:51Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2023-07-20T15:32:51Z",
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2023-07-20T15:32:49Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "cri-o://78c30560e95586c5bcad7e4df5a37f24b09f4bfa112a76164080edee5ad55347",
+                        "image": "quay.io/redhattraining/gitlab-ce@sha256:edd9a8f20a3761b29a1b059dd5f1e9100639500b68fcbb75d25d3c159482c5e5",
+                        "imageID": "quay.io/redhattraining/gitlab-ce@sha256:edd9a8f20a3761b29a1b059dd5f1e9100639500b68fcbb75d25d3c159482c5e5",
+                        "lastState": {},
+                        "name": "gitlab",
+                        "ready": true,
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2023-07-20T15:32:51Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "192.168.172.74",
+                "phase": "Running",
+                "podIP": "10.129.2.21",
+                "podIPs": [
+                    {
+                        "ip": "10.129.2.21"
+                    }
+                ],
+                "qosClass": "BestEffort",
+                "startTime": "2023-07-20T15:32:49Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
