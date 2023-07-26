@@ -54,8 +54,8 @@ if __name__ == "__main__":
         for col1, col2, col3, col4, col5 in result:
                 message_summary += f"<tr><td> {col1} <td>{col2} </td><td>{col3}</td><td>{col4}</td><td>{col5}</td></tr>"
         message_summary += "</table>"
-        send_message_to_teams_webhook(teams_webhook_url, message_summary)
-        #print(message_summary)
+        #send_message_to_teams_webhook(teams_webhook_url, message_summary)
+        print(message_summary)
     #if result is not None:
     #    print("ผลลัพธ์:")
     #    for col1, col3 in result:
