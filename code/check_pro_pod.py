@@ -1,9 +1,8 @@
 import subprocess
 import requests
 
-def run_linux_command_and_get_columns(oc_project,command):
+def run_linux_command_and_get_columns(command):
     try:
-        subprocess.run(oc_project, check=True)
         process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, text=True)
         stdout, stderr = process.communicate()
 
@@ -46,10 +45,9 @@ def send_message_to_teams_webhook(webhook_url, message):
 
 if __name__ == "__main__":
     # แทนที่ command ด้วยคำสั่ง Linux ที่คุณต้องการรัน
-    oc_project = "oc project demo"
-    linux_command = "oc get po"
+    linux_command = "oc get po -n demo"
     teams_webhook_url = "https://mfeconcloud.webhook.office.com/webhookb2/2eaf140e-1c4c-4a55-b630-67337eafd809@74105ed9-72ff-4685-9154-75f7408b6f67/IncomingWebhook/890b4931533941af9d9adb974966662b/76686ac9-1a87-4a33-a0e4-ce4f4f0031da"
-    result = run_linux_command_and_get_columns(oc_project,linux_command)
+    result = run_linux_command_and_get_columns(linux_command)
     if result is not None:
         message_summary = "<h1>Check pod</h1>"
         message_summary += "<table border=\"0\">"
