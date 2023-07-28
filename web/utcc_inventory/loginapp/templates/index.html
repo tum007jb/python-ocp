@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title> First Web Page Index </title>
+{% endblock title %}
+
+{% block content %}
+<h1>Hello {{name | upper}} your age is {{age}}</h1><br>
+        {% if age >= 30  %}
+        <h3> You are Old </h3>
+        {% else %}
+        <h3> You are Yong </h3>
+        {% endif %}
+{% endblock content %}
+
