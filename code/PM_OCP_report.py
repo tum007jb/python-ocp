@@ -121,10 +121,29 @@ if __name__ == "__main__":
     linux_command = "oc adm top node"
     result = run_linux_command_ocadm(linux_command)
     table2 = reportadm(result)
+    # get OC get node
+    linux_command = "oc get no"
+    result = run_linux_command_ocadm(linux_command)
+    table3 = reportadm(result)
      # get pod dns
     linux_command = "oc get po -n openshift-dns"
     result = run_linux_command_ocgetpo(linux_command)
-    table3 = reportpod(result,"OpenShift-DNS")
+    table4 = reportpod(result,"OpenShift-DNS")
+
+     # get pod dns
+    linux_command = "oc get po -n openshift-console"
+    result = run_linux_command_ocgetpo(linux_command)
+    table4 = reportpod(result,"OpenShift-Web Console")
+
+     # get pod dns
+    linux_command = "oc get po -n openshift-monitoring"
+    result = run_linux_command_ocgetpo(linux_command)
+    table4 = reportpod(result,"OpenShift-Monitor")
+
+     # get pod dns
+    linux_command = "oc get po -n openshift-ingress"
+    result = run_linux_command_ocgetpo(linux_command)
+    table4 = reportpod(result,"OpenShift-Ingress")
     
     fullweb = f"{webintro}{table1}{table2}{table3}{webfoot}"
     
