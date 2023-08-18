@@ -46,7 +46,7 @@ def send_message_to_teams_webhook(webhook_url, message):
 if __name__ == "__main__":
     # แทนที่ command ด้วยคำสั่ง Linux ที่คุณต้องการรัน
     linux_command = "oc get po -n openshift-monitoring"
-    teams_webhook_url = "https://mfeconcloud.webhook.office.com/webhookb2/2eaf140e-1c4c-4a55-b630-67337eafd809@74105ed9-72ff-4685-9154-75f7408b6f67/IncomingWebhook/890b4931533941af9d9adb974966662b/76686ac9-1a87-4a33-a0e4-ce4f4f0031da"
+    teams_webhook_url = "https://mfeconcloud.webhook.office.com/webhookb2/2eaf140e-1c4c-4a55-b630-67337eafd809@74105ed9-72ff-4685-9154-75f7408b6f67/IncomingWebhook/930f603dfdf24b93a6ba34bd9d95358b/76686ac9-1a87-4a33-a0e4-ce4f4f0031da"
     result = run_linux_command_and_get_columns(linux_command)
     if result is not None:
         message_summary = "<h1>Check pod</h1>"

@@ -31,9 +31,11 @@ def run_linux_command_ocadm(command):
 def reportadm(result):
     if result is not None:
         message_summary = '<figure class="text-center"><blockquote class="blockquote"><h3>Summary Performance OCP</h3></blockquote></figure>'
-        message_summary += '<div class="container d-flex justify-content-center align-items-center"><table class="table table-bordered text-center">'
-        for col1, col2, col3, col4, col5 in result:
-                message_summary += f"<tr><td> {col1} <td>{col2} </td><td>{col3}</td><td>{col4}</td><td>{col5}</td></tr>"
+        message_summary += '<div class="container d-flex justify-content-center align-items-center"><table class="table table-sm text-center">'
+        for col1, col2, col3, col4, col5 in result[0:1]:
+                message_summary += f'<thead><tr><th scope="col"> {col1} </th><th scope="col">{col2} </th><th scope="col">{col3}</th><th scope="col">{col4}</th><th scope="col">{col5}</th></tr></thead>'
+        for col1, col2, col3, col4, col5 in result[1:]:
+                message_summary += f'<tbody><tr><th scope="row"> {col1} </th><td>{col2} </td><td>{col3}</td><td>{col4}</td><td>{col5}</td></tr></tbody>'
         message_summary += "</table></div>"
         return message_summary
 
@@ -65,7 +67,9 @@ def reportco(result):
    if result is not None:
         message_summary = '<figure class="text-center"><blockquote class="blockquote"><h3>Summary Operator</h3></blockquote></figure>'
         message_summary += '<div class="container d-flex justify-content-center align-items-center"><table class="table table-bordered text-center">'
-        for col1, col3, col4, col5 in result:
+        for col1, col3, col4, col5 in result[0:1]:
+            message_summary += f'<thead><tr><th scope="col">{col1}</th><th scope="col">{col3}</th><th scope="col">{col4}</th><th scope="col">{col5}</th></tr></thead>'
+        for col1, col3, col4, col5 in result[1:]:
             if col3 == "True":
                 message_summary += f"<tr><td> {col1} </td><td style=\"color:green;\">{col3}</td><td style=\"color:green;\">{col4}</td><td style=\"color:green;\">{col5}</td></tr>"
             else:
